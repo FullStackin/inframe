@@ -1,0 +1,7 @@
+.env
+
+# Mac stuff
+.DS_Store
+
+# Ignore node_modules
+node_modules/
