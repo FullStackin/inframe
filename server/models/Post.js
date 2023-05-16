@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const postSchema = moongose.Schema(
+const postSchema = mongoose.Schema(
   {
     userId: {
       type: String,
@@ -23,7 +23,7 @@ const postSchema = moongose.Schema(
       of: Boolean,
     },
     comments: {
-      types: Array,
+      type: Array,
       default: [],
     },
   },
