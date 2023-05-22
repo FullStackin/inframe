@@ -35,7 +35,7 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets"))); // se
 // FILE STORAGE: - this will save your file
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/assets"); // into this particular folder.
+    cb(null, "public/assets");
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -44,7 +44,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // ROUTES + FILES
-app.post("/auth/register", upload.single("picture"), register); // Middleware
+app.post("/auth/register", upload.single("picture"), register);
 app.post("/posts", verifyToken, upload.single("picture"), createPost);
 
 // ROUTES
@@ -53,7 +53,7 @@ app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 
 // MONGOOSE SETUP:
-const PORT = process.env.PORT || 6001; // back up port incase original doesn't work.
+const PORT = process.env.PORT || 6001;
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -66,4 +66,4 @@ mongoose
     // User.insertMany(users);
     // Post.insertMany(posts);
   })
-  .catch((error) => console.log(`${error} did not connect, Sorry.`)); // in case we run into any errors
+  .catch((error) => console.log(`${error} did not connect, Sorry.`));
