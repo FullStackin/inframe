@@ -72,30 +72,30 @@ export const themeSettings = (mode) => {
           }),
     },
     typography: {
-      fontFamily: ["Gloock", "serif"].join(","),
-      fontSize: 12,
+      fontFamily: ["Playfair", "serif"].join(","),
+      fontSize: 16,
       h1: {
-        fontFamily: ["Gloock", "serif"].join(","),
+        fontFamily: ["Playfair", "serif"].join(","),
         fontSize: 40,
       },
       h2: {
-        fontFamily: ["Gloock", "serif"].join(","),
+        fontFamily: ["Playfair", "serif"].join(","),
         fontSize: 32,
       },
       h3: {
-        fontFamily: ["Gloock", "serif"].join(","),
+        fontFamily: ["Playfair", "serif"].join(","),
         fontSize: 24,
       },
       h4: {
-        fontFamily: ["Gloock", "serif"].join(","),
+        fontFamily: ["Playfair", "serif"].join(","),
         fontSize: 20,
       },
       h5: {
-        fontFamily: ["Gloock", "serif"].join(","),
+        fontFamily: ["Playfair", "serif"].join(","),
         fontSize: 16,
       },
       h6: {
-        fontFamily: ["Gloock", "serif"].join(","),
+        fontFamily: ["Playfair", "serif"].join(","),
         fontSize: 14,
       },
     },
