@@ -15,20 +15,19 @@ export const colorTokens = {
     1000: "#000000",
   },
   primary: {
-    50: "#E6FBFF",
-    100: "#CCF7FE",
-    200: "#99EEFD",
-    300: "#66E6FC",
-    400: "#33DDFB",
-    500: "#00D5FA",
-    600: "#00A0BC",
-    700: "#006B7D",
-    800: "#00353F",
-    900: "#001519",
+    50: "#FFE9D5",
+    100: "#FFD1AB",
+    200: "#FFB97F",
+    300: "#FFA154",
+    400: "#FF8A28",
+    500: "#FFA500",
+    600: "#DB7C00",
+    700: "#B75500",
+    800: "#933E00",
+    900: "#701700",
   },
 };
 
-//theme settings
 export const themeSettings = (mode) => {
   return {
     palette: {
@@ -75,27 +74,27 @@ export const themeSettings = (mode) => {
       fontFamily: ["Playfair", "serif"].join(","),
       fontSize: 16,
       h1: {
-        fontFamily: ["Playfair", "serif"].join(","),
+        fontFamily: ["Playfair Display", "serif"].join(","),
         fontSize: 40,
       },
       h2: {
-        fontFamily: ["Playfair", "serif"].join(","),
+        fontFamily: ["Playfair Display", "serif"].join(","),
         fontSize: 32,
       },
       h3: {
-        fontFamily: ["Playfair", "serif"].join(","),
+        fontFamily: ["Playfair Display", "serif"].join(","),
         fontSize: 24,
       },
       h4: {
-        fontFamily: ["Playfair", "serif"].join(","),
+        fontFamily: ["Playfair Display", "serif"].join(","),
         fontSize: 20,
       },
       h5: {
-        fontFamily: ["Playfair", "serif"].join(","),
+        fontFamily: ["Playfair Display", "serif"].join(","),
         fontSize: 16,
       },
       h6: {
-        fontFamily: ["Playfair", "serif"].join(","),
+        fontFamily: ["Playfair Display", "serif"].join(","),
         fontSize: 14,
       },
     },
