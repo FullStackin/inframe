@@ -32,7 +32,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
   useEffect(() => {
     getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!user) {
     return null;
@@ -97,13 +97,13 @@ const UserWidget = ({ userId, picturePath }) => {
       {/* THIRD ROW */}
       <Box p="1rem 0">
         <FlexBetween mb="0.5rem">
-          <Typography color={medium}>Profile View's</Typography>
+          <Typography color={medium}>Who's viewed your profile</Typography>
           <Typography color={main} fontWeight="500">
             {viewedProfile}
           </Typography>
         </FlexBetween>
         <FlexBetween>
-          <Typography color={medium}>Impressions</Typography>
+          <Typography color={medium}>Impressions of your post</Typography>
           <Typography color={main} fontWeight="500">
             {impressions}
           </Typography>
@@ -125,7 +125,7 @@ const UserWidget = ({ userId, picturePath }) => {
               <Typography color={main} fontWeight="500">
                 Twitter
               </Typography>
-              <Typography color={medium}>Social Media</Typography>
+              <Typography color={medium}>Social Network</Typography>
             </Box>
           </FlexBetween>
           <EditOutlined sx={{ color: main }} />
@@ -138,7 +138,7 @@ const UserWidget = ({ userId, picturePath }) => {
               <Typography color={main} fontWeight="500">
                 Linkedin
               </Typography>
-              <Typography color={medium}>Networking</Typography>
+              <Typography color={medium}>Network Platform</Typography>
             </Box>
           </FlexBetween>
           <EditOutlined sx={{ color: main }} />

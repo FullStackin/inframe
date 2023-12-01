@@ -24,10 +24,12 @@ const LoginPage = () => {
         borderRadius="1.5rem"
         backgroundColor={theme.palette.background.alt}
       >
-        <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          Unlock your creativity and join the Inframe community, where every
-          moment is worth sharing and every picture tells a unique story.
-          {/* Capture, connect, and create memories with Inframe, your go-to destination for all things visual and vibrant. */}
+        <Typography
+          fontWeight="500"
+          variant="h5"
+          sx={{ mb: "1.5rem", textAlign: "center" }}
+        >
+          Unleash, Share, Inspire.
         </Typography>
         <Form />
       </Box>
