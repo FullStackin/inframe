@@ -24,11 +24,7 @@ const LoginPage = () => {
         borderRadius="1.5rem"
         backgroundColor={theme.palette.background.alt}
       >
-        <Typography
-          fontWeight="500"
-          variant="h5"
-          sx={{ mb: "1.5rem", textAlign: "center" }}
-        >
+        <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
           Unleash, Share, Inspire.
         </Typography>
         <Form />

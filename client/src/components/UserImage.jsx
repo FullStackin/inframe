@@ -1,6 +1,9 @@
+// Importing required component from Material-UI
 import { Box } from "@mui/material";
 
-const UserImage = ({ image, size = "50px" }) => {
+// Functional Component - UserImage
+const UserImage = ({ image, size = "60px" }) => {
+  // JSX for rendering user image with specified size
   return (
     <Box width={size} height={size}>
       <img
@@ -8,6 +11,7 @@ const UserImage = ({ image, size = "50px" }) => {
         width={size}
         height={size}
         alt="user"
+        // Displaying user image with provided path
         src={`http://localhost:3001/assets/${image}`}
       />
     </Box>
