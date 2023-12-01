@@ -24,7 +24,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const medium = palette.neutral.medium;
 
   // Check if the friend is already in the user's friend list
-  const isFriend = friends.find((friend) => friend._id === friendId);
+  const isFriend = Array.isArray(friends) && friends.find((friend) => friend._id === friendId);
 
   // PATCH request to update friend status
   const patchFriend = async () => {
