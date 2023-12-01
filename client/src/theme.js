@@ -1,5 +1,7 @@
+// Color tokens for grey and primary shades
 export const colorTokens = {
   grey: {
+    // Grey shades from 0 to 1000
     0: "#FFFFFF",
     10: "#F6F6F6",
     50: "#F0F0F0",
@@ -15,6 +17,7 @@ export const colorTokens = {
     1000: "#000000",
   },
   primary: {
+    // Primary shades from 50 to 900
     50: "#FFE9D5",
     100: "#FFD1AB",
     200: "#FFB97F",
@@ -28,12 +31,14 @@ export const colorTokens = {
   },
 };
 
+// Function to generate theme settings based on the mode (light or dark)
 export const themeSettings = (mode) => {
   return {
     palette: {
       mode: mode,
       ...(mode === "dark"
         ? {
+            // Dark mode color settings
             primary: {
               dark: colorTokens.primary[200],
               main: colorTokens.primary[500],
@@ -52,6 +57,7 @@ export const themeSettings = (mode) => {
             },
           }
         : {
+            // Light mode color settings
             primary: {
               dark: colorTokens.primary[700],
               main: colorTokens.primary[500],
@@ -71,6 +77,7 @@ export const themeSettings = (mode) => {
           }),
     },
     typography: {
+      // Font family and size settings
       fontFamily: ["Playfair", "serif"].join(","),
       fontSize: 16,
       h1: {

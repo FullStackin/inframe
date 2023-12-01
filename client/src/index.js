@@ -1,3 +1,4 @@
+// Importing necessary React and Redux-related modules
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -18,6 +19,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import { PersistGate } from "redux-persist/integration/react";
 
+// Configuration for Redux persist
 const persistConfig = { key: "root", storage, version: 1 };
 const persistedReducer = persistReducer(persistConfig, authReducer);
 const store = configureStore({
@@ -25,12 +27,16 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
+        // Ignoring certain actions for persisting state
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
 });
 
+// Creating a root for ReactDOM
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+// Rendering the application wrapped in Redux Provider and PersistGate
 root.render(
   <React.StrictMode>
     <Provider store={store}>
