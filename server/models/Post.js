@@ -1,7 +1,5 @@
-// Import the mongoose library
 import mongoose from "mongoose";
 
-// Define the schema for the Post model
 const postSchema = mongoose.Schema(
   {
     userId: {
@@ -29,11 +27,9 @@ const postSchema = mongoose.Schema(
       default: [],
     },
   },
-  { timestamps: true } // Include timestamps for createdAt and updatedAt
+  { timestamps: true }
 );
 
-// Create the Post model using the postSchema
 const Post = mongoose.model("Post", postSchema);
 
-// Export the Post model
 export default Post;

@@ -20,7 +20,7 @@ const AdvertWidget = () => {
         width="100%"
         height="auto"
         alt="advert"
-        src="http://localhost:3001/assets/info4.jpeg"
+        src="http://localhost:3001/assets/info4.avif"
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
         onError={(e) => console.error("Error loading image:", e)}
       />
@@ -30,7 +30,7 @@ const AdvertWidget = () => {
         <Typography color={medium}>Manscaped.com</Typography>
       </FlexBetween>
       <Typography color={medium} m="0.5rem 0">
-        Men’s health and hygiene is at the core of MANSCAPED®—it is the essence
+        Men’s health and hygiene is at the core of MANSCAPED® — it is the essence
         of our cause. This partnership will raise awareness on an issue that
         impacts men of all ages. Early detection is imperative. Not only do we
         feel compelled to get the word out, we feel that it’s our duty to do so.
