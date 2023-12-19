@@ -159,9 +159,18 @@ export const posts = [
       [userIds[4], true],
     ]),
     comments: [
-      "OMG. JELLY!",
-      "Wow thats beautiful, where is this?",
-      "Make sure to wait 30 min before swimming!",
+      {
+        userId: userIds[0],
+        comment: "OMG. JELLY!",
+      },
+      {
+        userId: userIds[1],
+        comment: "Wow thats beautiful, where is this?",
+      },
+      {
+        userId: userIds[2],
+        comment: "Make sure to wait 30 min before swimming!",
+      },
     ],
   },
   {
@@ -180,10 +189,22 @@ export const posts = [
       [userIds[2], true],
     ]),
     comments: [
-      "AVOCADO!!!",
-      "OOO next time i want to go, is this in Santana Row?!",
-      "I like the Chicken Salad more.",
-      "I prefer Ike's Next door, lol.",
+      {
+        userId: userIds[3],
+        comment: "AVOCADO!!!",
+      },
+      {
+        userId: userIds[4],
+        comment: "OOO next time i want to go, is this in Santana Row?!",
+      },
+      {
+        userId: userIds[5],
+        comment: "I like the Chicken Salad more.",
+      },
+      {
+        userId: userIds[6],
+        comment: "I prefer Ike's Next door, lol.",
+      },
     ],
   },
   {
@@ -203,11 +224,26 @@ export const posts = [
       [userIds[5], true],
     ]),
     comments: [
-      "Luke, I am your father!",
-      "WHERES YODA THO!",
-      "This must of been lit!",
-      "Oooo Girl! Im definitely not gonna skip next time",
-      "WELCOME TO THE DARK SIDE!",
+      {
+        userId: userIds[1],
+        comment: "Luke, I am your father!",
+      },
+      {
+        userId: userIds[0],
+        comment: "WHERES YODA THO!",
+      },
+      {
+        userId: userIds[2],
+        comment: "This must of been lit!",
+      },
+      {
+        userId: userIds[3],
+        comment: "Oooo Girl! Im definitely not gonna skip next time",
+      },
+      {
+        userId: userIds[4],
+        comment: "WELCOME TO THE DARK SIDE!",
+      },
     ],
   },
   {
@@ -226,12 +262,30 @@ export const posts = [
       [userIds[3], true],
     ]),
     comments: [
-      "This is the most magical image ive seen!",
-      "WAIT HOW!!!, Who took the pic!",
-      "That sunset is gorgeous.",
-      "I can do that in my sleep",
-      "Climin aint easy!",
-      "I'd prob look at the mountain and turn back around lol.",
+      {
+        userId: userIds[5],
+        comment: "This is the most magical image ive seen!",
+      },
+      {
+        userId: userIds[6],
+        comment: "WAIT HOW!!!, Who took the pic!",
+      },
+      {
+        userId: userIds[0],
+        comment: "That sunset is gorgeous.",
+      },
+      {
+        userId: userIds[1],
+        comment: "I can do that in my sleep",
+      },
+      {
+        userId: userIds[2],
+        comment: "Climin aint easy!",
+      },
+      {
+        userId: userIds[3],
+        comment: "I'd prob look at the mountain and turn back around lol.",
+      },
     ],
   },
   {
@@ -252,11 +306,31 @@ export const posts = [
       [userIds[0], true],
     ]),
     comments: [
-      "The concert by the water with fireworks is an absolute thrill! The energy is incredible! 🔥🎇",
-      "Absolutely mesmerized by the lively concert and those breathtaking fireworks! 🌟🎆",
-      "This concert is pure excitement, especially with those vibrant fireworks lighting up the night! 🕺🌊",
-      "Ditching boredom for an unforgettable night of music, water, and electrifying fireworks! 🎶🌅",
-      "The concert's energy, combined with the dazzling fireworks, creates an unforgettable atmosphere! 🔥🎵",
+      {
+        userId: userIds[4],
+        comment:
+          "The concert by the water with fireworks is an absolute thrill! The energy is incredible! 🔥🎇",
+      },
+      {
+        userId: userIds[5],
+        comment:
+          "Absolutely mesmerized by the lively concert and those breathtaking fireworks! 🌟🎆",
+      },
+      {
+        userId: userIds[6],
+        comment:
+          "This concert is pure excitement, especially with those vibrant fireworks lighting up the night! 🕺🌊",
+      },
+      {
+        userId: userIds[7],
+        comment:
+          "Ditching boredom for an unforgettable night of music, water, and electrifying fireworks! 🎶🌅",
+      },
+      {
+        userId: userIds[0],
+        comment:
+          "The concert's energy, combined with the dazzling fireworks, creates an unforgettable atmosphere! 🔥🎵",
+      },
     ],
   },
   {
@@ -275,11 +349,26 @@ export const posts = [
       [userIds[2], true],
     ]),
     comments: [
-      "Can I get a sled and hit those slopes? 🏂",
-      "I'm moving to the mountains ASAP! 🏞️",
-      "Books or snowball fights? The choice is obvious. ⛄😁",
-      "Start building a snowman! ⛄",
-      "Forget the stress, embrace the chill vibes of nature! 🌲",
+      {
+        userId: userIds[1],
+        comment: "Can I get a sled and hit those slopes? 🏂",
+      },
+      {
+        userId: userIds[2],
+        comment: "I'm moving to the mountains ASAP! 🏞️",
+      },
+      {
+        userId: userIds[3],
+        comment: "Books or snowball fights? The choice is obvious. ⛄😁",
+      },
+      {
+        userId: userIds[4],
+        comment: "Start building a snowman! ⛄",
+      },
+      {
+        userId: userIds[5],
+        comment: "Forget the stress, embrace the chill vibes of nature! 🌲",
+      },
     ],
   },
 ];

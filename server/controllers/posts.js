@@ -40,27 +40,25 @@ export const createPost = async (req, res) => {
 /* READ */
 export const getFeedPosts = async (req, res) => {
   try {
-    // Retrieve all posts from the database
-    const posts = await Post.find();
-    // Respond with the list of posts
+    const posts = await Post.find().populate(
+      "comments.userId",
+      "firstName lastName"
+    );
     res.status(200).json(posts);
   } catch (err) {
-    // Handle errors and respond with an error message
     res.status(404).json({ message: err.message });
   }
 };
 
 export const getUserPosts = async (req, res) => {
   try {
-    // Extract userId from the request parameters
     const { userId } = req.params;
-
-    // Retrieve posts associated with the specified userId from the database
-    const posts = await Post.find({ userId });
-    // Respond with the list of user-specific posts
+    const posts = await Post.find({ userId }).populate(
+      "comments.userId",
+      "firstName lastName"
+    );
     res.status(200).json(posts);
   } catch (err) {
-    // Handle errors and respond with an error message
     res.status(404).json({ message: err.message });
   }
 };
@@ -96,6 +94,40 @@ export const likePost = async (req, res) => {
     res.status(200).json(updatedPost);
   } catch (err) {
     // Handle errors and respond with an error message
+    res.status(404).json({ message: err.message });
+  }
+};
+
+/* CREATE COMMENT */
+export const createComment = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { userId, comment } = req.body;
+
+    // Find the post in the database
+    const post = await Post.findById(id);
+
+    // Create a new comment object with only userId and comment
+    const newComment = {
+      userId, // just the userId is enough here
+      comment,
+    };
+
+    // Add the new comment to the post
+    post.comments.push(newComment);
+
+    // Save the updated post to the database
+    await post.save();
+
+    // Optional: Populate user details in comments when returning the updated post
+    const updatedPost = await Post.findById(id).populate(
+      "comments.userId",
+      "firstName lastName"
+    );
+
+    // Respond with the updated post
+    res.status(200).json(updatedPost);
+  } catch (err) {
     res.status(404).json({ message: err.message });
   }
 };

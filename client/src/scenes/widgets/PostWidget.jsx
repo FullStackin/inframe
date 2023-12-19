@@ -3,14 +3,72 @@ import {
   FavoriteBorderOutlined,
   FavoriteOutlined,
   ShareOutlined,
+  Edit as EditIcon,
+  Delete as DeleteIcon,
 } from "@mui/icons-material";
-import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
+import {
+  Box,
+  Divider,
+  IconButton,
+  Typography,
+  TextField,
+  useTheme,
+} from "@mui/material";
 import FlexBetween from "components/FlexBetween";
 import Friend from "components/Friend";
 import WidgetWrapper from "components/WidgetWrapper";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
+import CommentForm from "../../components/CommentForm";
+
+const Comment = ({ comment, onEdit, onDelete }) => {
+  const [editMode, setEditMode] = useState(false);
+  const [editedComment, setEditedComment] = useState(comment.comment);
+
+  const handleEdit = () => {
+    if (editMode && editedComment !== comment.comment) {
+      onEdit(comment._id, editedComment);
+    }
+    setEditMode(!editMode);
+  };
+
+  const handleDelete = () => {
+    onDelete(comment._id);
+  };
+
+  return (
+    <Box key={comment._id} sx={{ mt: "1rem" }}>
+      <Divider />
+      {editMode ? (
+        <Box display="flex" alignItems="center" gap="1rem">
+          <TextField
+            fullWidth
+            size="small"
+            value={editedComment}
+            onChange={(e) => setEditedComment(e.target.value)}
+            sx={{ flexGrow: 1 }}
+          />
+          <IconButton onClick={handleEdit}>
+            <EditIcon />
+          </IconButton>
+        </Box>
+      ) : (
+        <Typography>
+          {`${comment.userId.firstName} ${comment.userId.lastName}: ${comment.comment}`}
+        </Typography>
+      )}
+      <Box display="flex" justifyContent="flex-end">
+        <IconButton size="small" onClick={() => setEditMode(!editMode)}>
+          <EditIcon />
+        </IconButton>
+        <IconButton size="small" onClick={handleDelete}>
+          <DeleteIcon />
+        </IconButton>
+      </Box>
+    </Box>
+  );
+};
 
 const PostWidget = ({
   postId,
@@ -24,6 +82,7 @@ const PostWidget = ({
   comments,
 }) => {
   const [isComments, setIsComments] = useState(false);
+  const [localComments, setLocalComments] = useState(comments);
   const dispatch = useDispatch();
   const token = useSelector((state) => state.token);
   const loggedInUserId = useSelector((state) => state.user._id);
@@ -45,6 +104,111 @@ const PostWidget = ({
     });
     const updatedPost = await response.json();
     dispatch(setPost({ post: updatedPost }));
+  };
+
+  const handleCommentSubmit = async (commentText) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/posts/${postId}/comment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // Include auth token if necessary
+          },
+          body: JSON.stringify({
+            userId: loggedInUserId,
+            comment: commentText,
+          }),
+        }
+      );
+      if (response.ok) {
+        const updatedPost = await response.json();
+        console.log(updatedPost); // inspect the data
+        setLocalComments(updatedPost.comments);
+      } else {
+        // Handle errors (e.g., show a message to the user)
+      }
+    } catch (error) {
+      console.error("Error submitting comment:", error);
+    }
+  };
+
+  // Function to display a formatted comment
+  const renderComment = (comment) => {
+    if (comment.userId && comment.userId.firstName && comment.userId.lastName) {
+      return `${comment.userId.firstName} ${comment.userId.lastName}: ${comment.comment}`;
+    } else {
+      return `Anonymous: ${comment.comment}`;
+    }
+  };
+
+  useEffect(() => {
+    console.log("Comments:", comments); // Log initial comments
+  }, [comments]);
+
+  const handleEditComment = async (commentId, newComment) => {
+    console.log("Editing Comment:", commentId, newComment);
+    try {
+      const response = await fetch(
+        `http://localhost:3001/posts/${postId}/comment/${commentId}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            userId: loggedInUserId,
+            comment: newComment,
+          }),
+        }
+      );
+
+      const data = await response.json();
+      console.log("Edit Response:", data);
+
+      if (response.ok) {
+        // Check if user details are included in comments
+        const updatedComments = data.comments.map((c) => {
+          return {
+            ...c,
+            userId: c.userId || { firstName: "Anonymous", lastName: "" },
+          };
+        });
+
+        setLocalComments(updatedComments);
+      } else {
+        console.error("Error editing comment:", data.message);
+      }
+    } catch (error) {
+      console.error("Error editing comment:", error);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3001/posts/${postId}/comment/${commentId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ userId: loggedInUserId }),
+        }
+      );
+
+      if (response.ok) {
+        const updatedPost = await response.json();
+        setLocalComments(updatedPost.comments); // Update local comments state
+      } else {
+        // Handle error (e.g., show a message to the user)
+      }
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
   };
 
   return (
@@ -92,16 +256,18 @@ const PostWidget = ({
           <ShareOutlined />
         </IconButton>
       </FlexBetween>
+      {/* Comment Section */}
       {isComments && (
         <Box mt="0.5rem">
-          {comments.map((comment, i) => (
-            <Box key={`${name}-${i}`}>
-              <Divider />
-              <Typography sx={{ color: main, m: "0.5rem 0", pl: "1rem" }}>
-                {comment}
-              </Typography>
-            </Box>
+          {localComments.map((comment) => (
+            <Comment
+              key={comment._id}
+              comment={comment}
+              onEdit={handleEditComment}
+              onDelete={handleDeleteComment}
+            />
           ))}
+          <CommentForm onCommentSubmit={handleCommentSubmit} />
           <Divider />
         </Box>
       )}
