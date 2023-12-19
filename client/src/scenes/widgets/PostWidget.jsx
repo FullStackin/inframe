@@ -134,14 +134,6 @@ const PostWidget = ({
     }
   };
 
-  // Function to display a formatted comment
-  const renderComment = (comment) => {
-    if (comment.userId && comment.userId.firstName && comment.userId.lastName) {
-      return `${comment.userId.firstName} ${comment.userId.lastName}: ${comment.comment}`;
-    } else {
-      return `Anonymous: ${comment.comment}`;
-    }
-  };
 
   useEffect(() => {
     console.log("Comments:", comments); // Log initial comments
