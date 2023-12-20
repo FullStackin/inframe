@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 import CommentForm from "../../components/CommentForm";
 
+
 const Comment = ({ comment, onEdit, onDelete }) => {
   const [editMode, setEditMode] = useState(false);
   const [editedComment, setEditedComment] = useState(comment.comment);
@@ -54,9 +55,12 @@ const Comment = ({ comment, onEdit, onDelete }) => {
           </IconButton>
         </Box>
       ) : (
-        <Typography>
-          {`${comment.userId.firstName} ${comment.userId.lastName}: ${comment.comment}`}
-        </Typography>
+        <Typography variant="contained">
+      <span style={{ color: 'orange' }}>
+        {`${comment.userId.firstName} ${comment.userId.lastName}`}
+      </span>
+      {`: ${comment.comment}`}
+    </Typography>
       )}
       <Box display="flex" justifyContent="flex-end">
         <IconButton size="small" onClick={() => setEditMode(!editMode)}>
@@ -133,7 +137,6 @@ const PostWidget = ({
       console.error("Error submitting comment:", error);
     }
   };
-
 
   useEffect(() => {
     console.log("Comments:", comments); // Log initial comments
