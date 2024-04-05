@@ -8,9 +8,8 @@ import {
 
 const router = express.Router();
 
-// Make sure this matches the URL you are using in the fetch call
-router.post("/posts/:id/comment", createComment);
-router.patch("/posts/:postId/comment/:commentId", editComment);
-router.delete("/posts/:postId/comment/:commentId", deleteComment);
+router.post("/:postId/comment", createComment);
+router.patch("/:postId/comment/:commentId", editComment);
+router.delete("/:postId/comment/:commentId", deleteComment);
 
 export default router;

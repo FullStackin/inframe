@@ -52,7 +52,7 @@ app.post("/posts", verifyToken, upload.single("picture"), createPost);
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
-app.use(commentRoutes);
+app.use("/posts", commentRoutes);
 
 
 /* MONGOOSE SETUP */

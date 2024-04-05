@@ -3,7 +3,7 @@ import Post from "../models/Post.js";
 
 export const createComment = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { postId } = req.params;
     const { userId, comment } = req.body;
 
     const user = await User.findById(userId);
@@ -17,7 +17,7 @@ export const createComment = async (req, res) => {
     };
 
     const updatedPost = await Post.findByIdAndUpdate(
-      id,
+      postId,
       { $push: { comments: newComment } },
       { new: true }
     ).populate("comments.userId", "firstName lastName");

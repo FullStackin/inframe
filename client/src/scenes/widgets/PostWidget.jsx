@@ -22,7 +22,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "state";
 import CommentForm from "../../components/CommentForm";
 
-
 const Comment = ({ comment, onEdit, onDelete }) => {
   const [editMode, setEditMode] = useState(false);
   const [editedComment, setEditedComment] = useState(comment.comment);
@@ -56,11 +55,11 @@ const Comment = ({ comment, onEdit, onDelete }) => {
         </Box>
       ) : (
         <Typography variant="contained">
-      <span style={{ color: 'orange' }}>
-        {`${comment.userId.firstName} ${comment.userId.lastName}`}
-      </span>
-      {`: ${comment.comment}`}
-    </Typography>
+          <span style={{ color: "orange" }}>
+            {`${comment.userId.firstName} ${comment.userId.lastName}`}
+          </span>
+          {`: ${comment.comment}`}
+        </Typography>
       )}
       <Box display="flex" justifyContent="flex-end">
         <IconButton size="small" onClick={() => setEditMode(!editMode)}>
@@ -111,27 +110,34 @@ const PostWidget = ({
   };
 
   const handleCommentSubmit = async (commentText) => {
+    const requestUrl = `http://localhost:3001/posts/${postId}/comment`;
     try {
-      const response = await fetch(
-        `http://localhost:3001/posts/${postId}/comment`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`, // Include auth token if necessary
-          },
-          body: JSON.stringify({
-            userId: loggedInUserId,
-            comment: commentText,
-          }),
-        }
-      );
+      console.log(`Submitting comment to ${requestUrl}`); // Log the request URL
+      console.log(`Request body:`, {
+        userId: loggedInUserId,
+        comment: commentText,
+      });
+
+      const response = await fetch(requestUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          userId: loggedInUserId,
+          comment: commentText,
+        }),
+      });
+
       if (response.ok) {
         const updatedPost = await response.json();
-        console.log(updatedPost); // inspect the data
+        console.log("Comment submitted successfully:", updatedPost);
         setLocalComments(updatedPost.comments);
       } else {
-        // Handle errors (e.g., show a message to the user)
+        console.log(`Failed to submit comment. Status: ${response.status}`);
+        const errorResponse = await response.text();
+        console.log("Error response:", errorResponse);
       }
     } catch (error) {
       console.error("Error submitting comment:", error);
@@ -139,7 +145,7 @@ const PostWidget = ({
   };
 
   useEffect(() => {
-    console.log("Comments:", comments); // Log initial comments
+    console.log("Comments:", comments);
   }, [comments]);
 
   const handleEditComment = async (commentId, newComment) => {
@@ -164,7 +170,6 @@ const PostWidget = ({
       console.log("Edit Response:", data);
 
       if (response.ok) {
-        // Check if user details are included in comments
         const updatedComments = data.comments.map((c) => {
           return {
             ...c,
